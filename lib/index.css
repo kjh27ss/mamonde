@@ -1,0 +1,28 @@
+header{
+    position: relative;
+    width: 100%;
+}
+header #logo h1{
+    font-size: 0px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto;
+    width: 200px;
+    height: 60px;
+}
+main .section .title .name{
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+main .section .title .text{
+    font-weight: 500;
+    margin-top: 30px;
+}
+
+/* fullpage */
+.fp-warning, .fp-watermark a{
+    font-size: 0px !important;
+}
+#footer .fp-overflow{
+   overflow-y: hidden !important;
+}
