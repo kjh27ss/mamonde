@@ -35,11 +35,11 @@
             left: 0px;
             transition: all .3s 0s;
         }
-
-        header.view {
+        header.view,
+        header.hover-bg
+        {
             background-color: #fff;
         }
-
         header.view #logo {
             position: absolute;
             left: 0px;
@@ -77,11 +77,11 @@
 
         header.view .flex {
             justify-content: center;
-            height: 100px;
+            height: 60px;
         }
 
         header.view .icon {
-            top: 20px;
+            top: 0px;
         }
 
         header #logo h1 {
@@ -325,6 +325,12 @@
             z-index: 999;
             display: none;
         }
+        header .mobile .menuBox .menu-icon a{
+            line-height: 0;
+        }
+        header .mobile .menuBox .menu-icon a > img{
+            width: 21px;
+        }
 
         header .mobile .menuBox .menu-icon > button {
             padding: 0px 8px;
@@ -335,7 +341,7 @@
             position: relative;
          }
         header .mobile .menuBox-list li a > span,
-        header .mobile .menuBox-list li .sublist a > span
+        header .mobile .menuBox-list li.view .sublist a > span
         {
             content: "";
             background: url(img/plus.png) no-repeat right;
@@ -348,16 +354,24 @@
             margin-top: -7px;
         }
         header .mobile .menuBox-list li.view a > span,
-        header .mobile .menuBox-list li.view .sublist a > span
+        header .mobile .menuBox-list li.view .sublist li.view a > span
         {
             background: url(img/minus.png) no-repeat right;
+            background-size: 100%;
         }
-        header .mobile .menuBox-list li .sublist {
+        header .mobile .menuBox-list li .sublist,
+        header .mobile .menuBox-list li .sublist .sublist-list
+        {
             max-height: 0px;
             overflow: hidden;
             transition: all .4s 0s;
         }
-        header .mobile .menuBox-list li.view .sublist {
+        header .mobile .menuBox-list li.view .sublist li.view a{
+            border-bottom: 1px solid #e2e2e2;
+        }
+        header .mobile .menuBox-list li.view .sublist,
+        header .mobile .menuBox-list li.view .sublist li.view .sublist-list
+        {
             max-height: 500px;
             background-color: #f3eeea;
             
@@ -390,6 +404,16 @@
             height: 150px;
             margin-bottom: 10px;
         }
+        header .mobile .menuBox-list li .sublist .sublist-list{
+            padding: 0px 15px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        header .mobile .menuBox-list li .sublist .sublist-list li{
+            border-bottom: none;
+            text-align: left;
+            padding: 10px 15px;
+        }
 
         header .mobile .menuBox .mb-icon {
             padding: 20px 20px;
@@ -401,6 +425,7 @@
         }
 
         header .mobile .menuBox .mb-btn {
+            display: flex;
             position: absolute;
             width: 100%;
             bottom: 0px;
@@ -408,20 +433,57 @@
 
         header .mobile .menuBox .mb-btn button {
             position: relative;
-            background-color: #67605A;
+            background-color: #817871;
             padding: 14px 0px;
             color: #fff;
             font-size: 13px;
+            width: 100%;
         }
-
-        header .mobile .menuBox .mb-btn button:first-child:after {
+        header .mobile .menuBox .mb-btn .btn-lang{
+            z-index: 2;
+        }
+        header .mobile .menuBox .mb-btn .btn-lang:after {
             content: "";
             position: absolute;
-            width: 2px;
-            height: 12px;
-            top: 40%;
-            right: 0;
-            background-color: #fff;
+            background: url(img/lang.png) no-repeat;
+            background-size: 100% 100%;
+            width: 9px;
+            height: 5px;
+            margin-top: 7px;
+            margin-left: 10px;
+            transition: transform 0.3s;
+        }
+        header .mobile .menuBox .mb-btn .lang-list{
+            position: absolute;
+            width: 100%;
+            background-color: #9a938d;
+            top: 0;
+            transition: transform .3s;
+        }
+        header .mobile .menuBox .mb-btn.view .lang-list{
+            transform: translateY(-100%);
+        }
+        header .mobile .menuBox .mb-btn .lang-list > li{
+            width: 100%;
+            display: inline-block;
+            padding: 10px 35px;
+            color: #fff;
+            text-align: left;
+            font-size: 13px;
+        }
+        header .mobile .menuBox .mb-btn .lang-list > li:first-child a{
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        header .mobile .menuBox .mb-btn .lang-list > li:first-child a:after{
+            content: "";
+            display: inline-block;
+            width: 12px;
+            height: 8px;
+            margin-left: 10px;
+            background: url(img/check.png) no-repeat;
+            color: #fff;
+            background-size: 100% 100%;
         }
 
         header .mobile .menuBox .menu-top{
@@ -672,7 +734,7 @@
             width: 100%;
         }
         #footer .right{
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
         #footer .right > button{
             position: relative;
@@ -699,7 +761,7 @@
         }
         #footer .right > ul li {
             padding: 5px 10px;
-            font-size: 13px;
+            font-size: 14px;
         } 
 
         @media only screen and (max-width:1000px) {
@@ -714,7 +776,6 @@
 
             header.view .flex {
                 justify-content: space-between;
-                height: 60px;
             }
 
             header #logo h1 {
@@ -851,13 +912,13 @@
                         <div class="menu-top">
                             <img src="img/logo.svg" alt="">
                             <div class="menu-icon">
-                                <button><i class="fa-regular fa-user fa-lg"></i></button>
-                                <button id="menu-close"><i class="fa-solid fa-xmark fa-lg"></i></button>
+                                <a href="#"><img src="img/user.svg" alt=""></a>
+                                <button id="menu-close"><i class="fa-solid fa-xmark fa-lg"></i></button>                                 
                             </div>
                         </div>
                         <ul class="menuBox-list">
                             <li>
-                                 <a href="#">OUR STORY <span></span></a>
+                                <a href="#">OUR STORY <span></span></a>
                                 <ul class="sublist">
                                     <li><a href="#">브랜드 스토리</a></li>
                                     <li><a href="#">라운지</a></li>
@@ -873,9 +934,29 @@
                             <li>
                                 <a href="#">PRODUCT<span></span></a>
                                 <ul class="sublist">
-                                    <li><a href="#">스킨케어 전체보기</a></li>
-                                    <li><a href="#">제품 유형별<span></span></a></li>
-                                    <li><a href="#">피부 고민별<span></span></a></li>
+                                    <li>
+                                        <a href="#">스킨케어 전체보기</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">제품 유형별<span></span></a>
+                                        <ul class="sublist-list">
+                                            <li>스킨 / 로션</li>
+                                            <li>에센스/앰플/세럼</li>
+                                            <li>크림</li>
+                                            <li>마스크</li>
+                                            <li>선케어</li>
+                                            <li>클렌징</li>
+                                        </ul>                                        
+                                    </li>
+                                    <li>
+                                        <a href="#">피부 고민별<span></span></a>
+                                        <ul class="sublist-list">
+                                            <li>수분 / 보습</li>
+                                            <li>안티에이징</li>
+                                            <li>모공</li>    
+                                            <li>각질</li>
+                                        </ul>
+                                    </li>
                                     <li>
                                         <div>
                                             <img src="img/header_submenu.png" alt="">
@@ -893,10 +974,13 @@
                             </ul>
                         </div>
                         <div class="mb-btn">
-                            <div class="grid">
-                                <button>한국/한국어</button>
+                                <button class="btn-lang">한국/한국어</button>
+                                <ul class="lang-list">
+                                    <li><a href="#">한국/한국어</a></li>
+                                    <li><a href="#">International / English</a></li>
+                                    <li><a href="#">中文</a></li>
+                                </ul>
                                 <button>매장찾기</button>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -1125,51 +1209,71 @@
             }
         });
 
-        $("header #menu > ul li, header #menu > .submenu").hover(
+        // header hover
+        $("header #menu > ul li").hover(
             function(){
-                // $("header").css("background-color", "white");
-                if(!$("header").hasClass("view")){
-                    $("header").css("background-color","white");
-                }
+                $("header").addClass("hover-bg");
             },
             function(){
-                if($("header").hasClass("view")){
-                    $("header").css("background-color","white");
-                }
-                else{
-                    $("header").css("background-color", "transparent");
-                }
-            },
+                $("header").removeClass("hover-bg");
+            }
         )
-
         
+        $(function (){
+            const UI = {
+                mobileMenu : {
+                    open(){
+                        $("header .mobile .menuBox").addClass("view");
+                    },
+                    close(){
+                        $("header .mobile .menuBox").removeClass("view");
+                    },
+                    toggleSubMenu(el){
+                        $(el).parent().toggleClass("view");
+                    },
+                    toggleLangBox(el){
+                        $(el).parent().toggleClass("view");
+                    }
+                },
 
-        $("#menu-btn").on("click", function () {
-            $("header .mobile .menuBox").addClass("view");
-        })
-        $("#menu-close").on("click", function () {
-            $("header .mobile .menuBox").removeClass("view");
-        })
+                searchMenu : {
+                    open(){
+                        $("header .search-menu").addClass("view");
+                    },
+                    close(){
+                        $("header .search-menu").removeClass("view");
+                    }
+                },
 
-        $("header .mobile .menuBox-list li a").on("click",function() {
-            $(this).parent().toggleClass("view");
-        })
+                footer:{
+                    toggleLangDropdown(){
+                        $("#footer .right ul").toggle();
+                    }
+                }
+            };
 
-        $("#search").on("click", function () {
-            $("header .search-menu").addClass("view");
-        })
+            // mobile 메뉴
+            $("#menu-btn").on("click", UI.mobileMenu.open);
+            $("#menu-close").on("click", UI.mobileMenu.close);
 
+            // mobile 메뉴 list
+            $("header .mobile .menuBox-list li a, header .mobile .menuBox-list li.view .sublist a > span").on("click", function () {
+                UI.mobileMenu.toggleSubMenu(this);
+            })
 
-        $("#closebtn").on("click", function () {
-            $("header .search-menu").removeClass("view");
-        })
+            // mobile 메뉴 lang
+            $("header .mobile .menuBox .mb-btn .btn-lang").on("click", function(){
+                UI.mobileMenu.toggleLangBox(this);
+            })
 
-        $("#mobile-closebtn").on("click", function () {
-            $("header .search-menu").removeClass("view");
-        })
-        $("#footer .right button").on("click", function () {
-            $("#footer .right ul").toggle();
-        })
+            // 검색창
+            $("#search").on("click", UI.searchMenu.open);
+            $("#closebtn, #mobile-closebtn").on("click", UI.searchMenu.close);
+
+            // footer lang toggle
+            $("#footer .right button").on("click", UI.footer.toggleLangDropdown);
+            
+        });
     </script>
 </body>
 
