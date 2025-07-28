@@ -561,6 +561,15 @@
         .section:nth-child(3) {
             background-image: url(img/bg_page03.jpg);
         }
+        .fade-up{
+            opacity: 0;
+            transform: translateY(80px);
+            transition: all 1.8s ease;
+        }
+        .fade-up.active{
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         main #page01 .title {
             width: 100%;
@@ -1083,17 +1092,17 @@
         <div class="fullpage">
             <section id="page01" class="section">
                 <div class="title">
-                    <div class="name">Powered by Hyper Flora</div>
-                    <div class="sub">하이퍼 플로라로 피어나는 나다운 아름다움</div>
+                    <div class="name fade-up">Powered by Hyper Flora</div>
+                    <div class="sub fade-up">하이퍼 플로라로 피어나는 나다운 아름다움</div>
                 </div>
             </section>
             <section id="page02" class="section fp-auto-height">
                 <div class="grid">
                     <div class="left">
                         <div class="title">
-                            <div class="name">HYPER FLORA</div>
-                            <div class="sub">하이퍼 플로라</div>
-                            <div class="text">
+                            <div class="name fade-up">HYPER FLORA</div>
+                            <div class="sub fade-up">하이퍼 플로라</div>
+                            <div class="text fade-up">
                                 꽃에서 찾은 효능 성분과 최신의 스킨케어 성분을<br>
                                 결합하여 피부 시너지를 생성하는<br>
                                 마몽드의 스킨케어 솔루션
@@ -1108,7 +1117,7 @@
             <section id="page03" class="section">
                 <div class="grid">
                     <div class="left"></div>
-                    <div class="title">
+                    <div class="title fade-up">
                         <div class="name">
                             자신만의 독특한 방식으로<br>
                             삶을 꽃 피울 수 있도록
@@ -1122,7 +1131,7 @@
             </section>
             <section id="page04" class="section fp-auto-height">
                 <div class="grid">
-                    <div class="title">
+                    <div class="title fade-up">
                         <div class="name">마몽드의 새로운 심볼</div>
                         <div class="text">
                             1991년의 브랜드 헤리티지를 이어받아, <br>
@@ -1182,8 +1191,11 @@
             navigation: true,
             scrollingSpeed: 1000,
             responsiveWidth: 800, // fullpage 해제
+            autoScrolling: true,
 
             onLeave: function (origin, destination, direction) {
+                $(origin.item).find('.fade-up').removeClass("active");
+
                 // 0번째 섹션에서 벗어날 때
                 if (origin.index === 0 && direction === 'down') {
                     header.classList.add("view");
@@ -1197,6 +1209,7 @@
                 }
             },
             afterLoad: function (origin, destination, direction) {
+                $(destination.item).find(".fade-up").addClass("active");
                 if (destination.index == 0) {
                     header.classList.remove("view");
 
